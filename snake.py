@@ -17,7 +17,11 @@ class Snake:
     pass
 
 class Food:
-     pass
+     def __init__(self):
+        x = random.radint(0, (WINDOW_WIDTH/SIZE)-1) * SIZE
+        y = random.radint(0, (WINDOW_HEIGHT/SIZE)-1) * SIZE
+        
+        self.coordinates =[x,y]
 
 def turn():
     pass
