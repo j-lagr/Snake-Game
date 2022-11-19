@@ -4,6 +4,7 @@
 from tkinter import *
 import random 
 
+
 WINDOW_WIDTH = 500
 WINDOW_HEIGHT = 500
 SPEED = 75
@@ -64,8 +65,12 @@ def turn(snake,food):
         del snake.coordinates[-1]
         canvas.delete(snake.shape[-1])
         del snake.shape[-1]
+
+    if check(snake):
+        over()
     
-    window.after(SPEED, turn, snake, food)
+    else:
+        window.after(SPEED, turn, snake, food)
 
 def direction(new_direction):
     global directions
@@ -81,13 +86,32 @@ def direction(new_direction):
             directions = new_direction     
     elif new_direction == "down":
        if directions != "up":
-            directions = new_direction         
+            directions = new_direction  
 
-def check():
-    pass
+
+
+def check(snake):
+    x,y = snake.coordinates[0]
+    if x<0 or x>= WINDOW_WIDTH:
+        print ("GAME OVER")
+        return True
+    if y<0 or y>= WINDOW_HEIGHT:
+        print ("GAME OVER")
+        return True
+    for body_part in snake.coordinates [1:]:
+        if x==body_part[0] and y == body_part[1]:
+            print("GAME OVER")
+            return True
+    return False
+
+def exit_program():
+    window.destroy()
 
 def over():
-    pass
+    canvas.delete(ALL)
+    canvas.create_text(canvas.winfo_width()/2, canvas.winfo_height()/2, font=("Comic Sans MS",50), text= "GAME OVER", fill="white", tag="gameover")
+    
+
 
 
 window = Tk()
@@ -97,10 +121,13 @@ window.resizable(False, False)
 score = 0
 directions = "down"
 
-label = Label (window, text = "Highest Score:{}".format(score), font=("Comic Sans MS", 15) )
-label.pack()
+
 label = Label (window, text = "Score:{}".format(score), font=("Comic Sans MS", 25) )
 label.pack()
+label = Label (window, text = "Controls \n left arrow - left | right arrow - right \n up arrow - up   | down arrow -down", font=("Comic Sans MS", 15) )
+label.pack()
+btn = Button(window, text="Exit", command=exit_program)
+btn.pack()
 
 canvas = Canvas(window, bg=BACKGROUND, height=WINDOW_HEIGHT, width=WINDOW_WIDTH)
 canvas.pack()
