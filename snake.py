@@ -13,6 +13,24 @@ SNAKE_COLOR = "#964B00"
 FOOD_COLOR= "#FA8128"
 BACKGROUND = "#A9BA9D"
 
+class Snake:
+    pass
+
+class Food:
+     pass
+
+def turn():
+    pass
+
+def direction(new_direction):
+    pass
+
+def check():
+    pass
+
+def over():
+    pass
+
 
 window = Tk()
 window.title("Snake Pasensya")
@@ -40,5 +58,8 @@ x = int((screen_width/2) - (window_width/2))
 y = int((screen_height/2) - (window_height/2))
 
 window.geometry(f"{window_width}x{window_height}+{x}+{y}")
+
+snake = Snake()
+food = Food()
 
 window.mainloop()
