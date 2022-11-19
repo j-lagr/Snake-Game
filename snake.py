@@ -35,8 +35,26 @@ class Food:
 
         canvas.create_oval(x,y,x+SIZE,y+SIZE, fill=FOOD_COLOR,tag="food")
 
-def turn():
-    pass
+def turn(snake,food):
+    x,y = snake.coordinates[0]
+    
+    if direction =="up":
+        y -= SIZE
+    
+    elif direction == "down":
+        y += SIZE
+
+    elif direction == "left":
+        x-= SIZE
+    
+    elif direction == "right":
+        x += SIZE
+
+    snake.coordinates.insert(0, (x,y))
+    shape = canvas.create_oval(x,y,x+SIZE,y+SIZE, fill="cyan")
+    snake.shape.insert(0,shape)
+
+    window.after(SPEED, turn, snake, food)
 
 def direction(new_direction):
     pass
@@ -77,5 +95,7 @@ window.geometry(f"{window_width}x{window_height}+{x}+{y}")
 
 snake = Snake()
 food = Food()
+
+turn(snake,food)
 
 window.mainloop()
