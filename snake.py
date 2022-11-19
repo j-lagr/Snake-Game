@@ -18,10 +18,12 @@ class Snake:
 
 class Food:
      def __init__(self):
-        x = random.radint(0, (WINDOW_WIDTH/SIZE)-1) * SIZE
-        y = random.radint(0, (WINDOW_HEIGHT/SIZE)-1) * SIZE
+        x = random.randint(0, (WINDOW_WIDTH/SIZE)-1) * SIZE
+        y = random.randint(0, (WINDOW_HEIGHT/SIZE)-1) * SIZE
         
         self.coordinates =[x,y]
+
+        canvas.create_oval(x,y,x+SIZE,y+SIZE, fill=FOOD_COLOR,tag="food")
 
 def turn():
     pass
