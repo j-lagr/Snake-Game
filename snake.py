@@ -12,3 +12,9 @@ BODY = 3
 SNAKE_COLOR = "#964B00"
 FOOD_COLOR= "#FA8128"
 BACKGROUND = "#A9BA9D"
+
+
+window = Tk()
+window.title("Snake Pasensya")
+window.resizable(False, False)
+
