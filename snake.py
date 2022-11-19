@@ -14,7 +14,17 @@ FOOD_COLOR= "#FA8128"
 BACKGROUND = "#A9BA9D"
 
 class Snake:
-    pass
+    def __init__ (self):
+        self.body_size = BODY
+        self.coordinates = []
+        self.shape =[]
+
+        for i in range(0, BODY):
+            self.coordinates.append([0,0])
+        
+        for x, y in self.coordinates:
+            shape = canvas.create_arc(x,y,x+SIZE,y+SIZE, start =0, extent =270, outline = "black",fill=SNAKE_COLOR, tag ="snake")
+            self.shape.append(shape)
 
 class Food:
      def __init__(self):
