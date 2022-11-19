@@ -51,18 +51,37 @@ def turn(snake,food):
         x += SIZE
 
     snake.coordinates.insert(0, (x,y))
-    shape = canvas.create_oval(x,y,x+SIZE,y+SIZE, fill="cyan")
+    shape = canvas.create_arc(x,y,x+SIZE,y+SIZE,start =0, extent =270, outline = "black",fill=SNAKE_COLOR)
     snake.shape.insert(0,shape)
 
-    del snake.coordinates[-1]
-    canvas.delete(snake.shape[-1])
-
+    if x==food.coordinates[0] and y ==food.coordinates[1]:
+        global score
+        score += 1 
+        label.config(text="Score:{}".format(score))
+        canvas.delete("food")
+        food = Food()
+    else:
+        del snake.coordinates[-1]
+        canvas.delete(snake.shape[-1])
+        del snake.shape[-1]
+    
     window.after(SPEED, turn, snake, food)
 
-    del snake.shape[-1]
-
 def direction(new_direction):
-    pass
+    global directions
+
+    if new_direction == "left":
+       if directions != "right":
+            directions = new_direction
+    elif new_direction == "right":
+       if directions != "left":
+            directions = new_direction   
+    elif new_direction == "up":
+       if directions != "down":
+            directions = new_direction     
+    elif new_direction == "down":
+       if directions != "up":
+            directions = new_direction         
 
 def check():
     pass
@@ -98,10 +117,10 @@ y = int((screen_height/2) - (window_height/2))
 
 window.geometry(f"{window_width}x{window_height}+{x}+{y}")
 
-window.bind('<A>', lambda event : direction('left'))
-window.bind('<D>', lambda event : direction('right'))
-window.bind('<W>', lambda event : direction('up'))
-window.bind('<S>', lambda event : direction('donwn'))
+window.bind('<Left>', lambda event : direction('left'))
+window.bind('<Right>', lambda event : direction('right'))
+window.bind('<Up>', lambda event : direction('up'))
+window.bind('<Down>', lambda event : direction('down'))
 
 snake = Snake()
 food = Food()
