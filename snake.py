@@ -38,23 +38,28 @@ class Food:
 def turn(snake,food):
     x,y = snake.coordinates[0]
     
-    if direction =="up":
+    if directions =="up":
         y -= SIZE
     
-    elif direction == "down":
+    elif directions == "down":
         y += SIZE
 
-    elif direction == "left":
+    elif directions == "left":
         x-= SIZE
     
-    elif direction == "right":
+    elif directions == "right":
         x += SIZE
 
     snake.coordinates.insert(0, (x,y))
     shape = canvas.create_oval(x,y,x+SIZE,y+SIZE, fill="cyan")
     snake.shape.insert(0,shape)
 
+    del snake.coordinates[-1]
+    canvas.delete(snake.shape[-1])
+
     window.after(SPEED, turn, snake, food)
+
+    del snake.shape[-1]
 
 def direction(new_direction):
     pass
