@@ -122,8 +122,6 @@ score = 0
 directions = "down"
 
 
-label = Label (window, text = "Score:{}".format(score), font=("Comic Sans MS", 25) )
-label.pack()
 label = Label (window, text = "Controls \n left arrow - left | right arrow - right \n up arrow - up   | down arrow -down", font=("Comic Sans MS", 15) )
 label.pack()
 btn = Button(window, text="Exit", command=exit_program)
