@@ -3,3 +3,12 @@
 
 from tkinter import *
 import random 
+
+WINDOW_WIDTH = 1000
+WINDOW_HEIGHT = 1000
+SPEED = 75
+SIZE = 50
+BODY = 3
+SNAKE_COLOR = "#964B00"
+FOOD_COLOR= "#FA8128"
+BACKGROUND = "#A9BA9D"
