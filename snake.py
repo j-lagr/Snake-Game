@@ -98,6 +98,11 @@ y = int((screen_height/2) - (window_height/2))
 
 window.geometry(f"{window_width}x{window_height}+{x}+{y}")
 
+window.bind('<A>', lambda event : direction('left'))
+window.bind('<D>', lambda event : direction('right'))
+window.bind('<W>', lambda event : direction('up'))
+window.bind('<S>', lambda event : direction('donwn'))
+
 snake = Snake()
 food = Food()
 
